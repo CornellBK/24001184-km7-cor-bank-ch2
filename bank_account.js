@@ -12,6 +12,10 @@ function tambahSaldo() {
         alert('Penambahan saldo tidak boleh minus');
         return;
     }
+    if(!isInteger(tambah)){
+        alert('Mohon input angka');
+        return;
+    }
     saldo += tambah;
     saldoText.textContent = saldo;
     alert("Saldo baru : " + saldo);
@@ -22,6 +26,10 @@ function kurangiSaldo() {
     let kurang = +prompt('Berapa saldo yang ingin dikurangi?');
     if(kurang < 0){
         alert('Pengurangan saldo tidak boleh minus');
+        return;
+    }
+    if(!isInteger(kurang)){
+        alert('Mohon input angka');
         return;
     }
     saldo -= kurang;
