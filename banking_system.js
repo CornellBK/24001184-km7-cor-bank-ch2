@@ -3,6 +3,7 @@ import {BankAccount} from './bank_account.js'
 const depositButton = document.getElementById('deposit');
 const withdrawButton = document.getElementById('withdraw');
 const welcomeMsg = document.getElementById('welcome');
+const balance = document.getElementById("balance");
 
 let nama = prompt("Mohon input nama anda");
 while(nama == null){
@@ -23,7 +24,8 @@ depositButton.addEventListener('click', () => {
         alert('Please input a valid number');
         return;
     }
-    account.deposit(depValue);
+    balance.textContent = 'Please wait';
+    let process = setTimeout(() => account.deposit(depValue), 3000);
 })
 
 withdrawButton.addEventListener('click', () => {
@@ -41,5 +43,6 @@ withdrawButton.addEventListener('click', () => {
         alert('Balance not enough for withdrawal, current balance is : ' + account.getSaldo());
         return;
     }
-    account.withdraw(withdrawValue);
+    balance.textContent = 'Please wait';
+    let process = setTimeout(() => account.withdraw(withdrawValue), 3000);
 })
