@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Challenge 1</title>
-    <script src="bank_account.js"></script>
+    <script type="module" src="banking_system.js"></script>
 </head>
 <body>
-    <h1>Jumlah Saldo test:</h1>
-    <p id="saldo">getSaldo()</p>
-    <button onclick="tambahSaldo()">Tambah Saldo</button>
-    <button onclick="kurangiSaldo()">Kurangi Saldo</button>
+    <h1 id="welcome">Welcome!</h1>
+    <h3>Your total balance :</h3>
+    <p id="balance">0</p>
+    <button id="deposit">Deposit</button>
+    <button id="withdraw">Withdraw</button>
 </body>
 </html>

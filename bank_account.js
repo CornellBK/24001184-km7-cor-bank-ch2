@@ -1,40 +1,44 @@
-let saldo = 0;
+export class BankAccount{
+    constructor(nama, saldo){
+        this.nama = nama;
+        this.saldo = saldo;
+    }
 
-function showSaldo(){
-    const saldoText = document.getElementById("saldo");
-    saldoText.textContent = saldo;
+    deposit = () => {
+        const balance = document.getElementById("balance");
+        let depValue = +prompt('How much do you want to deposit?');
+        if(depValue <= 0){
+            alert('Deposit value can not be negative or zero');
+            return;
+        }
+        if(!Number.isInteger(depValue)){
+            alert('Please input a valid number');
+            return;
+        }
+        this.saldo += depValue;
+        balance.textContent = this.saldo;
+        alert("Your new balance is: " + this.saldo);
+    }
+
+    withdraw = () => {
+        const balance = document.getElementById("balance");
+        let withdrawValue = +prompt('How much do you want to withdraw?');
+        if(withdrawValue <= 0){
+            alert('Withdrawal value can not be negative or zero');
+            return;
+        }
+        if(!Number.isInteger(withdrawValue)){
+            alert('Please input a valid number');
+            return;
+        }
+
+        if(this.saldo - withdrawValue < 0){
+            alert('Balance not enough for withdrawal, current balance is : ' + this.saldo);
+            return;
+        }
+
+        this.saldo -= withdrawValue;
+        balance.textContent = this.saldo;
+        alert("Your new balance is: " + this.saldo);
+    }
 }
-
-function tambahSaldo() {
-    const saldoText = document.getElementById("saldo");
-    let tambah = +prompt('Berapa saldo yang ingin ditambah?');
-    if(tambah < 0){
-        alert('Penambahan saldo tidak boleh minus');
-        return;
-    }
-    if(!isInteger(tambah)){
-        alert('Mohon input angka');
-        return;
-    }
-    saldo += tambah;
-    saldoText.textContent = saldo;
-    alert("Saldo baru : " + saldo);
-}
-
-function kurangiSaldo() {
-    const saldoText = document.getElementById("saldo");
-    let kurang = +prompt('Berapa saldo yang ingin dikurangi?');
-    if(kurang < 0){
-        alert('Pengurangan saldo tidak boleh minus');
-        return;
-    }
-    if(!isInteger(kurang)){
-        alert('Mohon input angka');
-        return;
-    }
-    saldo -= kurang;
-    saldoText.textContent = saldo;
-    alert("Saldo baru : " + saldo);
-}
-
-window.onload = showSaldo;
