@@ -14,6 +14,16 @@ welcomeMsg.textContent = 'Welcome ' + nama;
 
 let account = new BankAccount(nama, 0);
 
+const disableButtons = () => {
+    depositButton.disabled = true;
+    withdrawButton.disabled = true;
+}
+
+const enableButtons = () => {
+    depositButton.disabled = false;
+    withdrawButton.disabled = false;
+}
+
 depositButton.addEventListener('click', () => {
     let depValue = +prompt('How much do you want to deposit?');
     if(depValue <= 0){
@@ -24,8 +34,13 @@ depositButton.addEventListener('click', () => {
         alert('Please input a valid number');
         return;
     }
+    disableButtons();
     balance.textContent = 'Please wait';
-    let process = setTimeout(() => account.deposit(depValue), 3000);
+    setTimeout(() => {
+        account.deposit(depValue);
+        balance.textContent = account.getSaldo();
+        enableButtons();
+    }, 3000);
 })
 
 withdrawButton.addEventListener('click', () => {
@@ -43,6 +58,11 @@ withdrawButton.addEventListener('click', () => {
         alert('Balance not enough for withdrawal, current balance is : ' + account.getSaldo());
         return;
     }
+    disableButtons();
     balance.textContent = 'Please wait';
-    let process = setTimeout(() => account.withdraw(withdrawValue), 3000);
+    setTimeout(() => {
+        account.withdraw(withdrawValue);
+        balance.textContent = account.getSaldo();
+        disableButtons();
+    }, 3000);
 })
